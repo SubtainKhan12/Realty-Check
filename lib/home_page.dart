@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_newsapp/reality_check.dart';
 
-// import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import 'constants.dart';
@@ -50,11 +50,11 @@ class _HomePageState extends State<HomePage> {
       debugShowCheckedModeBanner: false,
       theme: isSwitched
           ? ThemeData(
-              // fontFamily: GoogleFonts.poppins().fontFamily,
+              fontFamily: GoogleFonts.poppins().fontFamily,
               brightness: Brightness.light,
             )
           : ThemeData(
-              // fontFamily: GoogleFonts.poppins().fontFamily,
+              fontFamily: GoogleFonts.poppins().fontFamily,
               brightness: Brightness.dark,
             ),
       home: Scaffold(
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text('News'),
-          backgroundColor: Colors.orange,
+          // backgroundColor: Colors.orange,
           actions: [
             IconButton(
               onPressed: () {
@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
             Switch(
               value: isSwitched,
               onChanged: (bool value) => setState(() => isSwitched = value),
-              activeTrackColor: Colors.white,
+              activeTrackColor: Colors.blue,
               activeColor: Colors.white,
             ),
           ],
@@ -271,14 +271,14 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          // if (index == news.length - 1 && isLoading)
-                          //   const Center(
-                          //     child: CircularProgressIndicator(
-                          //       backgroundColor: Colors.yellow,
-                          //     ),
-                          //   )
-                          // else
-                          //   const SizedBox(),
+                          if (index == news.length - 1 && isLoading)
+                            const Center(
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.yellow,
+                              ),
+                            )
+                          else
+                            const SizedBox(),
                         ],
                       );
                     },
@@ -349,7 +349,6 @@ class _HomePageState extends State<HomePage> {
       baseApi =
           'https://newsapi.org/v2/top-headlines?pageSize=10&page=$pageNum&q=$searchKey&apiKey=855ae01438f1464b8748b9e95bfca965';
     }
-    //print(baseApi);
     getDataFromApi(baseApi);
   }
 
@@ -361,7 +360,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _scrollListener() {
-    if (controller.position.pixels == controller.position.minScrollExtent) {
+    if (controller.position.pixels == controller.position.maxScrollExtent && !isLoading) {
       setState(() => isLoading = true);
       getNews();
     }

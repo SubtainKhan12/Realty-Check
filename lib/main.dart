@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_newsapp/home_page.dart';
+import 'package:flutter_newsapp/splashScreen.dart';
 
 void main() => runApp(const MyApp());
 // GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -17,9 +18,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: SplashScreen(),
     );
 }
 }
